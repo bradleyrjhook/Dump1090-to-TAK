@@ -88,7 +88,11 @@ The script supports two types of data sources: HTTP and local file.
 ##	Filtering Configuration
 The script provides filtering capabilities for military aircraft based on ICAO codes. The `mil_icao_database` dictionary defines the ICAO codes for different aircraft types. Update this dictionary according to your requirements.
 
+![mil_icao_database](https://i.ibb.co/TmSXs9H/mil-icao.jpg)
+
 The `mil_country_prefixes` dictionary defines the country prefixes associated with military aircraft. Update this dictionary to include the appropriate country prefixes and their corresponding CoT types.
+
+![mil_country_database](https://i.ibb.co/0XkR5zG/mil-country.jpg)
 
 ##	Contributing
 Contributions to the project are welcome. Feel free to open issues for bug reports or feature requests, and submit pull requests with improvements.
