@@ -23,7 +23,7 @@ Example of tracks on WinTAK.
 - ICAO military for Royal Canadian Air Force already added for my personal requirements
 - I personally use a Raspberry Pi 4 with TAK Server, Dump1090-fa, and this script running automatically and it runs 24/7 with no issues
 - I developed this script because `adsbcot` gave me plenty of issues, so I decided to make my own solution
-- Currently looking for a public ICAO database with all military aircraft (https://www.ads-b.nl/) has many aircraft for a start state.
+- Currently looking for a public ICAO database with all military aircraft (https://www.ads-b.nl/) has many aircraft for a start state
 
 ## Requirements
 
@@ -54,7 +54,7 @@ Example of tracks on WinTAK.
       - `UDP_PORT`: The port number for the UDP communication. By default, set to `6969`.
       - `POLL_INTERVAL`: The interval (in seconds) between each data retrieval from Dump1090. By default, set to `3`.
       - `DUMP1090_URL`: The URL for accessing the Dump1090 JSON data. Modify it to match the address of your Dump1090 instance. By default, it is set to
-        `http://localhost:8080/data/aircraft.json"`.
+        `"http://localhost:8080/data/aircraft.json"`.
 4.	Define the `mil_icao_database` and `mil_country_prefixes` dictionaries according to your requirements.
 5.	Save the changes to the file.
 6.	Run the script:
@@ -81,7 +81,7 @@ The script supports two types of data sources: HTTP and local file.
 - Local File Data Source
 
 	To use a local file as the data source, set the `DUMP1090_URL` variable to the file URL using the `file://` scheme. For example:
-	`DUMP1090_URL = "file:///home/dump1090/dump1090-json/aircraft.json"`
+	`"DUMP1090_URL = "file:///home/dump1090/dump1090-json/aircraft.json"`
 	
 	Make sure to replace the file path with the actual path to your aircraft data file.
 
