@@ -42,11 +42,6 @@ mil_icao_database = {
             "C06820"
         ]
     },
-    "CAN B350": {
-        "a-f-A-M-F-C-L": [
-            "C048B6"
-        ]
-    },
     "CAN CC144": {
         "a-f-A-M-F-C-L": [
             "C2C1F1", "C2A01B", "C2B391", "C2A000", "C2A01B", "C2B39B", "C2B3A5", "C2B3AF",
