@@ -1,15 +1,18 @@
 # DUMP1090-TO-TAK
-# VER 1.0
+# VER 1.1
 
 import time
 import socket
 import requests
 import os
+import json
+import urllib.parse
 
 UDP_IP = "255.255.255.255"  # Broadcast address
 UDP_PORT = 6969
 POLL_INTERVAL = 3  # Polling interval in seconds
-DUMP1090_URL = "http://10.0.0.209:8080/data/aircraft.json"
+DUMP1090_URL = "http://localhost:8080/data/aircraft.json"
+#DUMP1090_URL = "file:///home/dump1090/dump1090-json/aircraft.json"
 
 mil_icao_database = {
     "CAN A310": {
@@ -107,28 +110,32 @@ mil_icao_database = {
 mil_country_prefixes = {
     "United States": {"prefixes": ["AE", "AD"], "cot_type": "a-f-A-M-F"},
     "Canada": {"prefixes": ["C2"], "cot_type": "a-f-A-M-F"},
-    "United Kingdom": {"prefixes": ["ZK", "ZJ", "ZH"], "cot_type": "a-f-A-M-F"},
-    "Germany": {"prefixes": ["10", "3E", "3F", "40"], "cot_type": "a-f-A-M-F"},
-    "France": {"prefixes": ["7B", "7D"], "cot_type": "a-f-A-M-F"},
-    "Australia": {"prefixes": ["55", "56"], "cot_type": "a-f-A-M-F"},
-    "China": {"prefixes": ["81", "82", "83"], "cot_type": "a-h-A-M-F"},
-    "Japan": {"prefixes": ["41", "42"], "cot_type": "a-f-A-M-F"},
-    "Russia": {"prefixes": ["61", "62", "63"], "cot_type": "a-h-A-M-F"},
-    "Brazil": {"prefixes": ["91", "92", "93"], "cot_type": "a-n-A-M-F"},
-    "India": {"prefixes": ["71", "72", "73"], "cot_type": "a-n-A-M-F"},
-    "South Africa": {"prefixes": ["43", "44"], "cot_type": "a-n-A-M-F"},
-    "Italy": {"prefixes": ["5E", "5F", "5G"], "cot_type": "a-f-A-M-F"},
-    "Spain": {"prefixes": ["9A", "9B"], "cot_type": "a-f-A-M-F"},
-    "Mexico": {"prefixes": ["0A", "0B"], "cot_type": "a-n-A-M-F"},
-    "Saudi Arabia": {"prefixes": ["30", "31"], "cot_type": "a-n-A-M-F"},
-    "Israel": {"prefixes": ["8C", "8D", "8E"], "cot_type": "a-f-A-M-F"},
+    "United Kingdom": {"prefixes": ["43"], "cot_type": "a-f-A-M-F"},
+    "Australia": {"prefixes": ["7C"], "cot_type": "a-f-A-M-F"},
+    "Germany": {"prefixes": ["3E", "3F"], "cot_type": "a-f-A-M-F"},
+    "France": {"prefixes": ["3A", "3B"], "cot_type": "a-f-A-M-F"},
+    "Italy": {"prefixes": ["33"], "cot_type": "a-f-A-M-F"},
     # Add more country prefixes and cot types as needed
 }
 
 def get_aircraft_data():
-    response = requests.get(DUMP1090_URL)
-    if response.status_code == 200:
-        return response.json().get("aircraft", [])
+    url_parts = urllib.parse.urlparse(DUMP1090_URL)
+    if url_parts.scheme == "http" or url_parts.scheme == "https":
+        response = requests.get(DUMP1090_URL)
+        if response.status_code == 200:
+            return response.json().get("aircraft", [])
+    elif url_parts.scheme == "file":
+        file_path = urllib.parse.unquote(url_parts.path)
+        try:
+            with open(file_path, "r") as file:
+                data = json.load(file)
+                return data.get("aircraft", [])
+        except FileNotFoundError:
+            print("Aircraft data file not found.")
+        except json.JSONDecodeError:
+            print("Error decoding JSON data.")
+    else:
+        print("Invalid URL scheme. Only HTTP and file schemes are supported.")
     return []
 
 def feet_to_meters(feet):
