@@ -1,5 +1,5 @@
 # DUMP1090-TO-TAK
-# VER 1.1
+# VER 1.1a
 
 import time
 import socket
