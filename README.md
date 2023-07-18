@@ -48,7 +48,7 @@ Example of tracks on WinTAK.
     cd Dump1090-to-TAK
 2. Open the script and modify the following variables:
     ```bash
-    sudo nano Dump1090_to_TAK.py
+    sudo nano Dump1090-to-TAK.py
 3.	Set the configuration variables at the top of the file:
       - `UDP_IP`: The broadcast address to send the CoT messages. By default, set to `"255.255.255.255"`.
       - `UDP_PORT`: The port number for the UDP communication. By default, set to `6969`.
