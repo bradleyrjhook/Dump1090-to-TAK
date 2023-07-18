@@ -92,7 +92,7 @@ The script provides filtering capabilities for military aircraft based on ICAO c
 
 The `mil_country_prefixes` dictionary defines the country prefixes associated with military aircraft. Update this dictionary to include the appropriate country prefixes and their corresponding CoT types.
 
-![mil_country_database](https://i.ibb.co/0XkR5zG/mil-country.jpg)
+![mil_country_database](https://i.ibb.co/Dt1g0Xb/mil-cntry.jpg)
 
 ##	Contributing
 Contributions to the project are welcome. Feel free to open issues for bug reports or feature requests, and submit pull requests with improvements.
